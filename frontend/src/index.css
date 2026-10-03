@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-paper font-sans text-ink antialiased; overflow-x: hidden; }
+  h1, h2, h3 { @apply font-display; }
+  :focus-visible { outline: 3px solid #2450D6; outline-offset: 2px; border-radius: 4px; }
+}
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply btn bg-accent text-white hover:bg-accent-dark; }
+  .btn-secondary { @apply btn border border-line bg-white text-ink hover:border-accent hover:text-accent; }
+  .card { @apply rounded-2xl border border-line bg-white; }
+  .input { @apply w-full rounded-lg border border-line bg-white px-3 py-2 text-sm text-ink placeholder:text-muted/70 focus:border-accent; }
+}
+
+@keyframes fade-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes pop { 0% { transform: scale(.6); opacity: 0; } 70% { transform: scale(1.08); } 100% { transform: scale(1); opacity: 1; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+.page-enter { animation: fade-in .28s ease-out both; }
+.pop-in { animation: pop .4s ease-out both; }
+.spinner { animation: spin .9s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
